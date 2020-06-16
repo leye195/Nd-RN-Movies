@@ -17,12 +17,12 @@ const Empty = styled.View`
   align-items: center;
 `;
 const Text = styled.Text``;
-const Poster = ({ posterImage }) => {
+const Poster = ({ title, posterImage }) => {
   return posterImage !== null ? (
     <Image source={{ uri: getImage(posterImage) }} />
   ) : (
     <Empty>
-      <Text>No Image</Text>
+      <Text>{title}</Text>
     </Empty>
   );
 };

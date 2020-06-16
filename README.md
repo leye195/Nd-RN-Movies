@@ -6,6 +6,6 @@ IOS / Android / Web Movie Discovery App built with React Native
 
 - [x] Movie Screen
 - [x] TV Show Screen
-- [] Search
-- [] Detail
-- [] Favourite
+- [ ] Search
+- [ ] Detail
+- [ ] Favourite

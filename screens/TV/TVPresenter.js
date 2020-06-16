@@ -29,8 +29,7 @@ const TVPresenter = ({ loading, popular, topRated, today, thisWeek }) => {
         ))}
       </ScrollContainer>
       <Container>
-        <Title title={"Popular Shows"} />
-        <HorizontalSlider>
+        <HorizontalSlider title={"Popular Shows"}>
           {popular.map((tv) => (
             <Vertical
               key={tv.id}
@@ -41,8 +40,7 @@ const TVPresenter = ({ loading, popular, topRated, today, thisWeek }) => {
             />
           ))}
         </HorizontalSlider>
-        <Title title={"TopRated"} />
-        <HorizontalSlider>
+        <HorizontalSlider title={"TopRated"}>
           {topRated.map((tv) => (
             <Vertical
               key={tv.id}

@@ -28,8 +28,7 @@ export default ({ loading, nowPlaying, popular, upcoming, navigation }) => {
         ))}
       </SliderContainer>
       <Container>
-        <Title title={"Popular Movies"} />
-        <HorizontalSlider>
+        <HorizontalSlider title={"Popular Movies"}>
           {popular.map((movie) => (
             <Vertical
               key={movie.id}

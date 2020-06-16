@@ -1,18 +1,16 @@
 import React from "react";
 import styled from "styled-components/native";
 import propsType from "prop-types";
-const Container = styled.View``;
+const Container = styled.View`
+  margin-top: 20px;
+  margin-bottom: 40px;
+`;
 const TextInput = styled.TextInput`
-  color: white;
   font-size: 16px;
   padding: 10px;
-  font-weight: 600;
-`;
-const Border = styled.View`
-  border-color: #e3e3e3;
-  border-width: 0.5px;
-  width: 95%;
-  margin: 0 auto;
+  margin: 0 20px;
+  background-color: white;
+  border-radius: 15px;
 `;
 const Input = ({ placeholder, value, onChange, onSubmit }) => {
   return (
@@ -22,10 +20,10 @@ const Input = ({ placeholder, value, onChange, onSubmit }) => {
         value={value}
         onChangeText={onChange}
         onSubmitEditing={onSubmit}
-        placeholderTextColor={"rgba(255,255,255,0.7)"}
+        placeholderTextColor={"rgba(0,0,0,0.5)"}
         returnKeyType={"search"}
+        autoCorrect={false}
       />
-      <Border />
     </Container>
   );
 };

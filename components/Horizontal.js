@@ -34,7 +34,7 @@ const Horizontal = ({ id, title, release, poster, overview }) => {
   return (
     <TouchableOpacity>
       <Container>
-        <Poster posterImage={poster} />
+        <Poster posterImage={poster} title={title} />
         <Data>
           <Title>{title}</Title>
           {release ? <Release>🗓 {formatDate(release, "en-US")}</Release> : null}

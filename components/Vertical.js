@@ -19,7 +19,7 @@ const Vertical = ({ id, poster, title, votes }) => {
   return (
     <TouchableOpacity>
       <Container>
-        <Poster posterImage={poster} />
+        <Poster posterImage={poster} title={title} />
         <Title>{trimText(title, 15)}</Title>
         <Votes votes={votes} />
       </Container>
