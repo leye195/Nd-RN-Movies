@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SearchPresenter from "./SearchPresenter";
 import { movieApi, tvApi } from "../../api";
-export default () => {
+export default ({ navigation }) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState({
     movies: [],
@@ -30,6 +30,7 @@ export default () => {
       query={query}
       handleOnChange={handleOnChange}
       handleOnSubmit={handleOnSubmit}
+      navigation={navigation}
     />
   );
 };

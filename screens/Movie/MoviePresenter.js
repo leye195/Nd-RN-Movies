@@ -11,9 +11,16 @@ import SliderContainer from "../../components/SliderContainer";
 const Container = styled.View`
   padding: 5px;
 `;
-export default ({ loading, nowPlaying, popular, upcoming, navigation }) => {
+export default ({
+  loading,
+  nowPlaying,
+  popular,
+  upcoming,
+  navigation,
+  getData,
+}) => {
   return (
-    <Scroll loading={loading}>
+    <Scroll loading={loading} getData={getData}>
       <SliderContainer>
         {nowPlaying.map((movie) => (
           <Slide
@@ -24,21 +31,17 @@ export default ({ loading, nowPlaying, popular, upcoming, navigation }) => {
             backgroundImage={movie.backdrop_path}
             votes={movie.vote_average}
             overview={movie.overview}
+            release={movie.release_date}
+            type={"movie"}
           />
         ))}
       </SliderContainer>
       <Container>
-        <HorizontalSlider title={"Popular Movies"}>
-          {popular.map((movie) => (
-            <Vertical
-              key={movie.id}
-              id={movie.id}
-              poster={movie.poster_path}
-              title={movie.title}
-              votes={movie.vote_average}
-            />
-          ))}
-        </HorizontalSlider>
+        <HorizontalSlider
+          title={"Popular Movies"}
+          type="movie"
+          contents={popular}
+        />
         <Title title={"Coming Soon"} />
         <List>
           {upcoming.map((movie) => (
@@ -46,9 +49,12 @@ export default ({ loading, nowPlaying, popular, upcoming, navigation }) => {
               key={movie.id}
               id={movie.id}
               poster={movie.poster_path}
+              backgroundImage={movie.backdrop_path}
               title={movie.title}
               release={movie.release_date}
               overview={movie.overview}
+              votes={movie.vote_average}
+              type={"movie"}
             />
           ))}
         </List>

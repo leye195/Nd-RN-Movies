@@ -19,7 +19,10 @@ const cacheFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
 export default function App() {
   const [loaded, setLoaded] = useState(false);
   const loadAssets = () => {
-    const images = cacheImages([require("./assets/splash.png")]);
+    const images = cacheImages([
+      require("./assets/splash.png"),
+      "https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80",
+    ]);
     const fonts = cacheFonts([Ionicons.font]);
     return Promise.all([...images, ...fonts]);
   };
@@ -45,11 +48,3 @@ export default function App() {
     />
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

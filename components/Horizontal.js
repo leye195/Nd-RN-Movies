@@ -5,6 +5,9 @@ import Poster from "./Poster";
 import Votes from "./Votes";
 import { trimText, formatDate } from "../utills";
 import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import Release from "./Release";
+
 const Container = styled.View`
   padding: 5px;
   margin-bottom: 20px;
@@ -25,19 +28,35 @@ const Title = styled.Text`
 const Overview = styled.Text`
   color: white;
 `;
-const Release = styled.Text`
-  color: white;
-  align-items: center;
-  margin-bottom: 10px;
-`;
-const Horizontal = ({ id, title, release, poster, overview }) => {
+const Horizontal = ({
+  id,
+  title,
+  release,
+  poster,
+  votes,
+  overview,
+  type,
+  backgroundImage,
+}) => {
+  const navigation = useNavigation();
+  const goToDetail = () => {
+    navigation.navigate("Detail", {
+      id,
+      type,
+      title,
+      poster_path: poster,
+      vote_average: votes,
+      overview,
+      backgroundImage,
+    });
+  };
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={goToDetail}>
       <Container>
         <Poster posterImage={poster} title={title} />
         <Data>
           <Title>{title}</Title>
-          {release ? <Release>🗓 {formatDate(release, "en-US")}</Release> : null}
+          {release ? <Release release={release} /> : null}
           <Overview>{trimText(overview, 120)}</Overview>
         </Data>
       </Container>

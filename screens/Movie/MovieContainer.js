@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { movieApi } from "../../api";
+import { movieApi, getImage } from "../../api";
 import MoviePresenter from "./MoviePresenter";
 export default ({ navigation }) => {
   const [movies, setMovies] = useState({
@@ -28,5 +28,7 @@ export default ({ navigation }) => {
   useEffect(() => {
     getData();
   }, []);
-  return <MoviePresenter {...movies} navigation={navigation} />;
+  return (
+    <MoviePresenter {...movies} navigation={navigation} getData={getData} />
+  );
 };

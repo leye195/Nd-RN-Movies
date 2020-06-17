@@ -33,5 +33,5 @@ export default ({ navigation }) => {
   useEffect(() => {
     getData();
   }, []);
-  return <TVPresenter {...tv} navigation={navigation} />;
+  return <TVPresenter {...tv} navigation={navigation} getData={getData} />;
 };

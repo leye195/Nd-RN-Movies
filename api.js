@@ -52,6 +52,10 @@ export const tvApi = {
 };
 
 //이미지 uri 반환
-export const getImage = (path) => {
+export const getImage = (
+  path,
+  defaultImg = "https://images.unsplash.com/photo-1505686994434-e3cc5abf1330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80"
+) => {
+  if (!path) return defaultImg;
   return `https://image.tmdb.org/t/p/w500${path}`;
 };

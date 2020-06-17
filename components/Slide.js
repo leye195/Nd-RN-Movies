@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components/native";
 import propTypes from "prop-types";
-import { Dimensions } from "react-native";
-import { getImage } from "../api";
 import Poster from "./Poster";
+import Votes from "./Votes";
+import { getImage } from "../api";
 import { GREY_COLOR, YELLOW_COLOR } from "../constants/colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import Votes from "./Votes";
+import { useNavigation } from "@react-navigation/native";
 import { trimText } from "../utills";
 const Container = styled.View`
   width: 100%;
@@ -54,7 +54,17 @@ const ButtonText = styled.Text`
   color: white;
 `;
 
-const Slider = ({ id, title, poster, backgroundImage, votes, overview }) => {
+const Slider = ({
+  id,
+  title,
+  poster,
+  backgroundImage,
+  votes,
+  overview,
+  release,
+  type,
+}) => {
+  const navigation = useNavigation();
   return (
     <Container>
       <Image resizeMode={"cover"} source={{ uri: getImage(backgroundImage) }} />
@@ -66,7 +76,20 @@ const Slider = ({ id, title, poster, backgroundImage, votes, overview }) => {
             <Votes votes={votes} />
           </VoteContainer>
           <Overview>{trimText(overview, 120)}</Overview>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("Detail", {
+                id,
+                type,
+                title,
+                poster_path: poster,
+                backgroundImage,
+                vote_average: votes,
+                overview,
+                release,
+              })
+            }
+          >
             <Button>
               <ButtonText>View Details</ButtonText>
             </Button>
