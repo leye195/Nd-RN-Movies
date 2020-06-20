@@ -35,7 +35,11 @@ export const movieApi = {
     getAnything("search/movie", {
       query,
     }),
-  movie: (id) => getAnything(`movie/${id}`),
+  movie: (id) =>
+    getAnything(`movie/${id}`, {
+      append_to_response: "videos",
+    }),
+  credits: (id) => getAnything(`movie/${id}/credits`),
   discover: () => getAnything("discover/movie"),
 };
 export const tvApi = {
@@ -48,7 +52,11 @@ export const tvApi = {
     getAnything("search/tv", {
       query,
     }),
-  show: (id) => getAnything(`tv/${id}`),
+  show: (id) =>
+    getAnything(`tv/${id}`, {
+      append_to_response: "videos",
+    }),
+  credits: (id) => getAnything(`tv/${id}/credits`),
 };
 
 //이미지 uri 반환

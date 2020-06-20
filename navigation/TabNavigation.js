@@ -32,6 +32,19 @@ export default ({ navigation, route }) => {
       }}
     >
       <Tab.Screen
+        component={FavScreen}
+        name="Favourite"
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Ionicons
+              name={Platform.OS === "ios" ? "ios-heart" : "md-heart"}
+              size={26}
+              color={focused ? ACTIVE_COLOR : INACTIVE_COLOR}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
         component={MovieScreen}
         name="Movie"
         options={{
@@ -64,19 +77,6 @@ export default ({ navigation, route }) => {
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name={Platform.OS === "ios" ? "ios-search" : "md-search"}
-              size={26}
-              color={focused ? ACTIVE_COLOR : INACTIVE_COLOR}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        component={FavScreen}
-        name="Favourite"
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <Ionicons
-              name={Platform.OS === "ios" ? "ios-heart" : "md-heart"}
               size={26}
               color={focused ? ACTIVE_COLOR : INACTIVE_COLOR}
             />

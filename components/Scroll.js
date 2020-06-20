@@ -15,6 +15,7 @@ const Scroll = ({ loading, getData, children }) => {
       contentContainerStyle={{
         flex: loading ? 1 : 0,
         justifyContent: loading ? "center" : "flex-start",
+        paddingBottom: 30,
       }}
       refreshControl={
         <RefreshControl

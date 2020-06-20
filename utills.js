@@ -17,3 +17,7 @@ export const formatDate = (date, lan) => {
     day: "numeric",
   });
 };
+
+export const getYouTubeThumbnail = (key) => {
+  return `https://i.ytimg.com/vi/${key}/mqdefault.jpg`;
+};

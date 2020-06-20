@@ -31,7 +31,8 @@ const HorizontalSlider = ({ title, type, contents, children }) => {
                 type={type}
               />
             ))
-          : contents.map((tv) => (
+          : type === "tv"
+          ? contents.map((tv) => (
               <Vertical
                 key={tv.id}
                 id={tv.id}
@@ -43,7 +44,8 @@ const HorizontalSlider = ({ title, type, contents, children }) => {
                 release={tv.first_air_date}
                 type={type}
               />
-            ))}
+            ))
+          : contents}
       </ScrollView>
     </Container>
   );
