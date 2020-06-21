@@ -10,25 +10,35 @@ export default ({ navigation }) => {
     popularError: null,
     upcoming: [],
     upcomingError: null,
+    page: 1,
   });
-  const getData = async () => {
+  const getData = async (page = 1) => {
     const [nowPlaying, nowPlayingError] = await movieApi.nowPlaying();
     const [popular, popularError] = await movieApi.popular();
-    const [upcoming, upcomingError] = await movieApi.upComing();
+    const [upcoming, upcomingError] = await movieApi.upComing(page);
     setMovies({
       loading: false,
       nowPlaying,
       nowPlayingError,
       popular,
       popularError,
-      upcoming,
+      upcoming: page > 1 ? [...movie.upcoming, ...upcoming] : upcoming,
       upcomingError,
+      page: page > 1 ? page : 1,
     });
   };
   useEffect(() => {
     getData();
   }, []);
+  const loadMore = async () => {
+    getData(movies.page + 1);
+  };
   return (
-    <MoviePresenter {...movies} navigation={navigation} getData={getData} />
+    <MoviePresenter
+      {...movies}
+      navigation={navigation}
+      getData={getData}
+      loadMore={loadMore}
+    />
   );
 };

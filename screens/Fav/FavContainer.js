@@ -8,6 +8,7 @@ export default () => {
     discover: [],
     discoverError: null,
   });
+
   const getData = async () => {
     const [discover, discoverError] = await movieApi.discover();
     setFav({

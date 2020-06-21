@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components/native";
 import Slide from "../../components/Slide";
 import Title from "../../components/Title";
-import Vertical from "../../components/Vertical";
 import Horizontal from "../../components/Horizontal";
 import Scroll from "../../components/Scroll";
 import HorizontalSlider from "../../components/HorizontalSlider";

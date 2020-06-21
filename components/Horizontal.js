@@ -51,13 +51,13 @@ const Horizontal = ({
     });
   };
   return (
-    <TouchableOpacity onPress={goToDetail}>
+    <TouchableOpacity onPress={type !== "season" ? goToDetail : () => {}}>
       <Container>
         <Poster posterImage={poster} title={title} />
         <Data>
           <Title>{title}</Title>
           {release ? <Release release={release} /> : null}
-          <Overview>{trimText(overview, 120)}</Overview>
+          <Overview>{trimText(overview, 100)}</Overview>
         </Data>
       </Container>
     </TouchableOpacity>

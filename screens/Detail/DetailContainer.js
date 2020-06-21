@@ -45,5 +45,12 @@ export default ({ navigation, route: { params } }) => {
   const openBrowser = (url) => async () => {
     const result = await WebBrowser.openBrowserAsync(url);
   };
-  return <DetailPresenter detail={detail} openBrowser={openBrowser} />;
+  return (
+    <DetailPresenter
+      detail={detail}
+      id={params.id}
+      openBrowser={openBrowser}
+      getData={getData}
+    />
+  );
 };

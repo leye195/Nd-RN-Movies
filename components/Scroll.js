@@ -25,7 +25,7 @@ const Scroll = ({ loading, getData, children }) => {
         />
       }
     >
-      {loading ? <ActivityIndicator /> : <>{children}</>}
+      {loading ? <ActivityIndicator /> : children}
     </ScrollView>
   );
 };

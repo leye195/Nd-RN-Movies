@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { getImage } from "../../api";
 import { ScrollView, TouchableOpacity } from "react-native";
 import { getYouTubeThumbnail } from "../../utills";
+import { useNavigation } from "@react-navigation/native";
 const Container = styled.View`
   flex: 1;
   height: 150px;
@@ -27,7 +28,15 @@ const Title = styled.Text`
   font-weight: 800;
   font-size: ${(props) => (props.type === "cast" ? "12px" : "14px")};
 `;
-export default ({ info, type, onPress }) => {
+export default ({ id, info, type, onPress }) => {
+  const navigation = useNavigation();
+  const goToSeason = (title, number) => () => {
+    navigation.navigate("Season", {
+      id,
+      title,
+      number,
+    });
+  };
   return (
     <ScrollView
       horizontal
@@ -78,19 +87,25 @@ export default ({ info, type, onPress }) => {
       {type === "season" &&
         info.map((item) =>
           item?.poster_path !== null ? (
-            <Image
+            <TouchableOpacity
               key={item.id}
-              source={{ uri: getImage(item.poster_path) }}
-              resizeMode={"stretch"}
-              type={"video"}
-            />
-          ) : (
-            <Container
-              key={item.id}
-              style={{ height: 150, width: 120, margin: 10 }}
+              onPress={goToSeason(item.name, item.season_number)}
             >
-              <Title>{item.name}</Title>
-            </Container>
+              <Image
+                source={{ uri: getImage(item.poster_path) }}
+                resizeMode={"stretch"}
+                type={"video"}
+              />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              key={item.id}
+              onPress={goToSeason(item.name, item.season_number)}
+            >
+              <Container style={{ height: 150, width: 120, margin: 10 }}>
+                <Title>{item.name}</Title>
+              </Container>
+            </TouchableOpacity>
           )
         )}
       {type === "video" &&

@@ -8,6 +8,7 @@ import { GREY_COLOR, YELLOW_COLOR } from "../constants/colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { trimText } from "../utills";
+import { Platform } from "react-native";
 const Container = styled.View`
   width: 100%;
   height: 100%;
@@ -20,12 +21,14 @@ const Image = styled.Image`
 `;
 const Content = styled.View`
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: ${(props) => (props.isWeb ? "center" : "space-around")};
   align-items: center;
   height: 100%;
 `;
 const Data = styled.View`
+  position: relative;
   width: 50%;
+  padding-left: ${(props) => (props.isWeb ? "20px" : "0px")};
 `;
 const Title = styled.Text`
   color: white;
@@ -48,6 +51,7 @@ const Button = styled.View`
   width: 120px;
   align-items: center;
   border-radius: 5px;
+  bottom: ${(props) => (props.isWeb ? "0px" : "0")};
 `;
 const ButtonText = styled.Text`
   font-weight: 600;
@@ -68,9 +72,9 @@ const Slider = ({
   return (
     <Container>
       <Image resizeMode={"cover"} source={{ uri: getImage(backgroundImage) }} />
-      <Content>
+      <Content isWeb={Platform.OS === "web"}>
         <Poster posterImage={poster} />
-        <Data>
+        <Data isWeb={Platform.OS === "web"}>
           <Title>{trimText(title, 15)}</Title>
           <VoteContainer>
             <Votes votes={votes} />

@@ -29,7 +29,10 @@ const getAnything = async (path, params = {}) => {
 export const movieApi = {
   //영화 관련 api
   nowPlaying: () => getAnything("movie/now_playing"),
-  upComing: () => getAnything("movie/upcoming"),
+  upComing: (page = 1) =>
+    getAnything(`movie/upcoming`, {
+      page,
+    }),
   popular: () => getAnything("movie/popular"),
   search: (query) =>
     getAnything("search/movie", {
@@ -57,6 +60,7 @@ export const tvApi = {
       append_to_response: "videos",
     }),
   credits: (id) => getAnything(`tv/${id}/credits`),
+  season: (id, number) => getAnything(`tv/${id}/season/${number}`),
 };
 
 //이미지 uri 반환

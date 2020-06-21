@@ -8,5 +8,5 @@ IOS / Android / Web Movie Discovery App built with React Native
 - [x] TV Show Screen
 - [x] Search
 - [x] Detail
-- [ ] Favourite
-- [ ] Season
+- [x] Favourite
+- [x] Season

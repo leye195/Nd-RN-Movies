@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import Scroll from "../../components/Scroll";
 import { getImage } from "../../api";
-import { Dimensions, ActivityIndicator, Platform } from "react-native";
+import { Dimensions, ActivityIndicator } from "react-native";
 import Poster from "../../components/Poster";
 import Votes from "../../components/Votes";
 import Release from "../../components/Release";
@@ -56,9 +56,9 @@ const Genres = styled.Text`
   margin-bottom: 20px;
 `;
 
-const DetailPresenter = ({ detail, openBrowser }) => {
+const DetailPresenter = ({ id, detail, openBrowser, getData }) => {
   return (
-    <Scroll loading={false}>
+    <Scroll loading={false} getData={getData}>
       <Image
         resizeMode={"cover"}
         source={{ uri: getImage(detail?.backdrop_path, "-") }}
@@ -73,14 +73,14 @@ const DetailPresenter = ({ detail, openBrowser }) => {
           <Votes votes={detail?.vote_average} />
         </SubInfoContainer>
         <Data>
-          {detail?.genres ? (
+          {detail?.genres && (
             <>
               <DataName>Genres</DataName>
               <Genres>{`🎥 ${detail?.genres
                 .map((genre) => genre.name)
                 .join(",")}`}</Genres>
             </>
-          ) : null}
+          )}
           {detail?.overview ? (
             <>
               <DataName>Overview</DataName>
@@ -123,7 +123,9 @@ const DetailPresenter = ({ detail, openBrowser }) => {
               </DataValue>
             </>
           ) : null}
-          {detail.seasons && <Slider info={detail.seasons} type={"season"} />}
+          {detail.seasons && (
+            <Slider info={detail.seasons} id={id} type={"season"} />
+          )}
           {detail.created_by && detail.created_by.length > 0 ? (
             <>
               <DataName>Created By</DataName>
